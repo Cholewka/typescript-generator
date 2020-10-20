@@ -1,14 +1,14 @@
 import React from "react";
-import { Settings as ISettings, Preset } from "../../typings";
+import { Settings, Preset } from "../../typings";
 
-export const Settings: ISettings = {
+export const ChoosePresetSettings: Settings = {
   description:
     "Do you want to start creating a configuration file from a preset?",
 };
 
 type ChoosePresetProps = {
   nextStep: () => void;
-  setPreset: React.Dispatch<React.SetStateAction<number>>;
+  setPreset: React.Dispatch<React.SetStateAction<Preset>>;
 };
 
 function ChoosePreset({ nextStep, setPreset }: ChoosePresetProps) {
