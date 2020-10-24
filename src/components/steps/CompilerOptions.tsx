@@ -57,10 +57,26 @@ function CompilerOptions({ preset }: CompilerOptionsProps) {
             <form className="block-form">
               <div className="block-grid">
                 {values.map((value) => {
-                  const generatedRandomizedValue: string = randomizedValue(
-                    value
-                  );
+                  const generatedRandomizedValue = randomizedValue(value);
                   if (value === "None") return null;
+                  if (value === presets[preset]) {
+                    return (
+                      <div key={generatedRandomizedValue}>
+                        <input
+                          type="radio"
+                          id={generatedRandomizedValue}
+                          value={generatedRandomizedValue}
+                          checked={true}
+                        />
+                        <label
+                          className="block-label"
+                          htmlFor={generatedRandomizedValue}
+                        >
+                          {value}
+                        </label>
+                      </div>
+                    );
+                  }
                   return (
                     <div key={generatedRandomizedValue}>
                       <input
