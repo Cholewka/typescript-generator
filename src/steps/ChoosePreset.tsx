@@ -1,5 +1,5 @@
 import React from "react";
-import { Settings, Preset } from "../../typings";
+import { Settings, Preset } from "../typings";
 
 export const ChoosePresetSettings: Settings = {
   description:

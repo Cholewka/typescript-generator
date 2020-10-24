@@ -1,10 +1,10 @@
 import React, { useState, Suspense } from "react";
 import { Preset } from "../typings";
 
-import ChoosePreset, { ChoosePresetSettings } from "./steps/ChoosePreset";
+import ChoosePreset, { ChoosePresetSettings } from "../steps/ChoosePreset";
 import CompilerOptions, {
   CompilerOptionsSettings,
-} from "./steps/CompilerOptions";
+} from "../steps/CompilerOptions";
 
 function App() {
   const [currentStep, setCurrentStep] = useState<number>(0);
