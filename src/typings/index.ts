@@ -28,7 +28,4 @@ export interface Question {
     svelte: string;
     scratch: string;
   };
-
-  // optionals
-  linkToReference?: boolean;
 }

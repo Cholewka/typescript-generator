@@ -13,34 +13,22 @@ function randomizedValue(value: string): string {
 }
 
 function CompilerOption({ item, preset }: CompilerOptionProps) {
-  const {
-    name,
-    description,
-    values,
-    defaultValue,
-    presets,
-    linkToReference,
-  } = item;
+  const { name, description, values, defaultValue, presets } = item;
   const [selectedValue, setSelectedValue] = useState<string>(presets[preset]);
   const [hasChanged, setHasChanged] = useState<boolean>(false);
   return (
     <div key={name} className="section-block input-block">
       <h2 className="block-heading">{name}</h2>
       <p className="block-headline">
-        Default: <span className="monospace">{defaultValue}</span>{" "}
-        {linkToReference ? (
-          <React.Fragment>
-            &bull;{" "}
-            <a
-              href={"https://www.typescriptlang.org/tsconfig#" + name}
-              target="blank"
-              title="TypeScript reference"
-              className="block-referencelink"
-            >
-              Get the reference
-            </a>
-          </React.Fragment>
-        ) : null}
+        Default: <span className="monospace">{defaultValue}</span> &bull;{" "}
+        <a
+          href={"https://www.typescriptlang.org/tsconfig#" + name}
+          target="blank"
+          title="TypeScript reference"
+          className="block-referencelink"
+        >
+          Get the reference
+        </a>
       </p>
       <p
         className="block-paragraph"
