@@ -1,37 +1,77 @@
-import React from "react";
+import React, { useState } from "react";
+import { Question, Preset } from "../typings";
+
+import Input from "../components/Input";
 
 type CompilerOptionProps = {
-  keyString: string;
-  presetValue: string;
-  value: string;
-  setValue: (newValue: string) => void;
+  item: Question;
+  preset: Preset;
 };
 
-function CompilerOption({
-  keyString,
-  presetValue,
-  value,
-  setValue,
-}: CompilerOptionProps) {
-  let isPresetOption: boolean = false;
-  if (value === "None") return null;
-  if (value === presetValue) {
-    isPresetOption = true;
-  }
+function randomizedValue(value: string): string {
+  return `${value}_${Math.random().toString(36).substr(2, 9)}`;
+}
+
+function CompilerOption({ item, preset }: CompilerOptionProps) {
+  const [selectedValue, setSelectedValue] = useState<string | boolean | null>(
+    null
+  );
+  const [hasChanged, setHasChanged] = useState<boolean>(false);
+  const {
+    name,
+    description,
+    values,
+    defaultValue,
+    presets,
+    linkToReference,
+  } = item;
   return (
-    <div key={keyString}>
-      <input
-        type="radio"
-        id={keyString}
-        value={keyString}
-        defaultChecked={isPresetOption}
-        onSelect={() => {
-          setValue(value);
+    <div key={name} className="section-block input-block">
+      <h2 className="block-heading">{name}</h2>
+      <p className="block-headline">
+        Default: <span className="monospace">{defaultValue}</span>{" "}
+        {linkToReference ? (
+          <React.Fragment>
+            &bull;{" "}
+            <a
+              href={"https://www.typescriptlang.org/tsconfig#" + name}
+              target="blank"
+              title="TypeScript reference"
+              className="block-referencelink"
+            >
+              Get the reference
+            </a>
+          </React.Fragment>
+        ) : null}
+      </p>
+      <p
+        className="block-paragraph"
+        dangerouslySetInnerHTML={{
+          __html: description
+            .replace("%MONOSPACE%", `<span class="monospace">`)
+            .replace("%STOPMONOSPACE%", "</span>"),
         }}
       />
-      <label className="block-label" htmlFor={keyString}>
-        {value}
-      </label>
+      <button onClick={() => console.log(selectedValue)}>get value</button>
+      <form className="block-form">
+        <div className="block-grid">
+          {values.map((value) => {
+            const key = randomizedValue(value);
+            return (
+              <Input
+                key={key}
+                keyString={key}
+                presetValue={presets[preset]}
+                value={value}
+                selectedValue={selectedValue}
+                setValue={setSelectedValue}
+                hasChanged={hasChanged}
+                setHasChanged={setHasChanged}
+              />
+            );
+          })}
+        </div>
+      </form>
     </div>
   );
 }
