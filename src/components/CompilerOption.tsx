@@ -20,7 +20,7 @@ function CompilerOption({ item, preset }: CompilerOptionProps) {
     <div key={name} className="section-block input-block">
       <h2 className="block-heading">{name}</h2>
       <p className="block-headline">
-        Default: <span className="monospace">{defaultValue}</span> &bull;{" "}
+        Default: <span className="monospace">{defaultValue}</span>
         <a
           href={"https://www.typescriptlang.org/tsconfig#" + name}
           target="blank"
