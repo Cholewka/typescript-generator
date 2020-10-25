@@ -57,8 +57,23 @@ const questions: Questions = {
     },
     {
       name: "esModuleInterop",
-      description: "No short description available. Important: if this options is turn on, the %MONOSPACE%allowSynthethicDefaultImports%STOPMONOSPACE% option will be turn on, too.",
-      linkToReference: true,
+      description: "No short description available. Important: if this option is turn on, the %MONOSPACE%allowSynthethicDefaultImports%STOPMONOSPACE% option will be turn on, too.",
+      values: ["true", "false"],
+      defaultValue: "false",
+      presets: {
+        undefined: "false",
+        recommended: "true",
+        node10: "true",
+        node12: "true",
+        deno: "false",
+        reactnative: "false",
+        svelte: "true",
+        scratch: "false"
+      }
+    },
+    {
+      name: "skipLibCheck",
+      description: "Skip type checking of declaration files (d.ts).",
       values: ["true", "false"],
       defaultValue: "false",
       presets: {
@@ -72,6 +87,7 @@ const questions: Questions = {
         scratch: "false"
       }
     }
+
   ],
 };
 
