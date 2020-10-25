@@ -13,10 +13,6 @@ function randomizedValue(value: string): string {
 }
 
 function CompilerOption({ item, preset }: CompilerOptionProps) {
-  const [selectedValue, setSelectedValue] = useState<string | boolean | null>(
-    null
-  );
-  const [hasChanged, setHasChanged] = useState<boolean>(false);
   const {
     name,
     description,
@@ -25,6 +21,8 @@ function CompilerOption({ item, preset }: CompilerOptionProps) {
     presets,
     linkToReference,
   } = item;
+  const [selectedValue, setSelectedValue] = useState<string>(presets[preset]);
+  const [hasChanged, setHasChanged] = useState<boolean>(false);
   return (
     <div key={name} className="section-block input-block">
       <h2 className="block-heading">{name}</h2>
