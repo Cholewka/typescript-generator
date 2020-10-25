@@ -71,6 +71,23 @@ const questions: Questions = {
         scratch: "false"
       }
     },
+    {
+      name: "skipLibCheck",
+      description: "Skip type checking of declaration files (d.ts).",
+      values: ["true", "false"],
+      defaultValue: "false",
+      presets: {
+        undefined: "false",
+        recommended: "true",
+        node10: "true",
+        node12: "true",
+        deno: "false",
+        reactnative: "false",
+        svelte: "true",
+        scratch: "false"
+      }
+    }
+
   ],
 };
 
