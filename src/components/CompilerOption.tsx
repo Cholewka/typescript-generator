@@ -27,7 +27,7 @@ function CompilerOption({ item, preset }: CompilerOptionProps) {
           title="TypeScript reference"
           className="block-referencelink"
         >
-          Get the reference
+          <span>REF</span>
         </a>
       </p>
       <p

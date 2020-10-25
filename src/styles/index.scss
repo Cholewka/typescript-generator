@@ -65,6 +65,7 @@ body {
   opacity: 0.45;
   transition: opacity 250ms;
   cursor: pointer;
+  position: relative;
 
   &:hover,
   &:focus,
@@ -163,8 +164,26 @@ body {
 
 .block-referencelink {
   color: #555;
+  background-color: #eee;
+  font-size: 1.1rem;
   text-decoration: none;
   font-weight: 600;
+  position: absolute;
+  transform: rotate(90deg);
+  top: 7px;
+  right: 10px;
+  border: 2px solid #0000001a;
+  border-radius: 0 10% 10% 0;
+
+  &:hover,
+  &:active {
+    background-color: #ede;
+  }
+
+  span {
+    display: block;
+    padding: 6px 12px;
+  }
 }
 
 .monospace {
