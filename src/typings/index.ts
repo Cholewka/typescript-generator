@@ -28,4 +28,15 @@ export interface Question {
     svelte: string;
     scratch: string;
   };
+
+  // optionals
+  selectedValue?: string;
+}
+
+export interface Questions {
+  [key: string]: Question[];
+}
+
+export enum Steps {
+  COMPILER_OPTIONS = "compilerOptions",
 }

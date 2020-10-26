@@ -1,8 +1,4 @@
-import { Question } from "./typings";
-
-interface Questions {
-  [key: string]: Question[];
-}
+import { Questions } from "./typings";
 
 // prettier-ignore
 const questions: Questions = {
