@@ -48,6 +48,11 @@ function App() {
               <hr className="section-divider" />
               <div className="section-links">
                 <button onClick={previousStep}>Previous step</button>
+                {currentStep < steps.length ? (
+                  <button onClick={nextStep} className="primary">
+                    Next step
+                  </button>
+                ) : null}
               </div>
             </React.Fragment>
           ) : null}
