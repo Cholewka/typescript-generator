@@ -1,5 +1,7 @@
 import React, { Suspense } from "react";
 import { Settings, Questions, Steps } from "../typings";
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 export const EndingSettings: Settings = {
   description:
@@ -26,9 +28,13 @@ function Ending({ questions }: EndingProps) {
       });
     }
     return (
-      <pre className="section-endingvalue">
+      <SyntaxHighlighter
+        language="json"
+        style={docco}
+        className="section-endingvalue"
+      >
         {JSON.stringify(generatedArray, null, 2)}
-      </pre>
+      </SyntaxHighlighter>
     );
   }
 
