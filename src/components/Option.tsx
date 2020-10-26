@@ -25,8 +25,10 @@ function updateOption(
   presetValue: string
 ) {
   const newArray = options;
-  newArray[currentStep][currentInput].selectedValue =
-    selectedValue || presetValue;
+  let newValue: string | boolean = selectedValue || presetValue;
+  if (newValue === "true") newValue = true;
+  if (newValue === "false") newValue = false;
+  newArray[currentStep][currentInput].selectedValue = newValue;
   updateOptions(newArray);
 }
 

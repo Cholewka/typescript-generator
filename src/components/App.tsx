@@ -25,7 +25,10 @@ function App() {
     const steps = [Steps.COMPILER_OPTIONS];
     for (let i = 0; i < steps.length; i++) {
       newArray[steps[i]].forEach((value: Question, index: number) => {
-        newArray[steps[i]][index].selectedValue = value.presets[preset];
+        let newValue: string | boolean = value.presets[preset];
+        if (newValue === "true") newValue = true;
+        if (newValue === "false") newValue = false;
+        newArray[steps[i]][index].selectedValue = newValue;
       });
     }
     updateOptions(newArray);

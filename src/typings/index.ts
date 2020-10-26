@@ -30,7 +30,7 @@ export interface Question {
   };
 
   // optionals
-  selectedValue?: string;
+  selectedValue?: string | boolean;
 }
 
 export interface Questions {
