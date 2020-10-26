@@ -3,7 +3,7 @@ import { Preset, Settings } from "../typings";
 
 import questions from "../questions";
 
-import CompilerOption from "../components/CompilerOption";
+import Option from "../components/Option";
 
 export const CompilerOptionsSettings: Settings = {
   description:
@@ -17,7 +17,7 @@ type CompilerOptionsProps = {
 function CompilerOptions({ preset }: CompilerOptionsProps) {
   const renderItems = useCallback(() => {
     return questions.compilerOptions.map((item, idx) => {
-      return <CompilerOption item={item} preset={preset} key={idx} />;
+      return <Option item={item} preset={preset} key={idx} />;
     });
   }, [preset]);
 

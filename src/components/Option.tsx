@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Question, Preset } from "../typings";
 
-import Input from "../components/Input";
+import Input from "./Input";
 
-type CompilerOptionProps = {
+type OptionProps = {
   item: Question;
   preset: Preset;
 };
@@ -12,7 +12,7 @@ function randomizedValue(value: string): string {
   return `${value}_${Math.random().toString(36).substr(2, 9)}`;
 }
 
-function CompilerOption({ item, preset }: CompilerOptionProps) {
+function Option({ item, preset }: OptionProps) {
   const { name, description, values, defaultValue, presets } = item;
   const [selectedValue, setSelectedValue] = useState<string>(presets[preset]);
   const [hasChanged, setHasChanged] = useState<boolean>(false);
@@ -62,4 +62,4 @@ function CompilerOption({ item, preset }: CompilerOptionProps) {
   );
 }
 
-export default CompilerOption;
+export default Option;
