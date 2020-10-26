@@ -122,8 +122,12 @@ body {
 
   .primary {
     margin-top: 0.5rem;
-    background-color: #cff9cf;
   }
+}
+
+.section-endingvalue {
+  max-height: 300px;
+  overflow-y: auto;
 }
 
 .block-heading {
