@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { Preset, Settings } from "../typings";
+import { Preset, Settings, Questions, Steps } from "../typings";
 
 import questions from "../questions";
 
@@ -12,14 +12,31 @@ export const CompilerOptionsSettings: Settings = {
 
 type CompilerOptionsProps = {
   preset: Preset;
+  options: Questions;
+  updateOptions: React.Dispatch<React.SetStateAction<Questions>>;
 };
 
-function CompilerOptions({ preset }: CompilerOptionsProps) {
+function CompilerOptions({
+  preset,
+  options,
+  updateOptions,
+}: CompilerOptionsProps) {
+  const currentStep = Steps.COMPILER_OPTIONS;
   const renderItems = useCallback(() => {
     return questions.compilerOptions.map((item, idx) => {
-      return <Option item={item} preset={preset} key={idx} />;
+      return (
+        <Option
+          updateOptions={updateOptions}
+          options={options}
+          item={item}
+          preset={preset}
+          key={idx}
+          currentInput={idx}
+          currentStep={currentStep}
+        />
+      );
     });
-  }, [preset]);
+  }, [preset, options, updateOptions, currentStep]);
 
   return <section className="app-grid-item">{renderItems()}</section>;
 }

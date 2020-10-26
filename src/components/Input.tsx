@@ -1,4 +1,5 @@
 import React from "react";
+import { Questions } from "../typings";
 
 type InputProps = {
   keyString: string;
@@ -8,6 +9,18 @@ type InputProps = {
   setValue: (newValue: string) => void;
   hasChanged: boolean;
   setHasChanged: React.Dispatch<React.SetStateAction<boolean>>;
+  updateOption: (
+    options: Questions,
+    updateOptions: React.Dispatch<React.SetStateAction<Questions>>,
+    currentStep: string,
+    currentInput: number,
+    selectedValue: string,
+    presetValue: string
+  ) => void;
+  updateOptions: React.Dispatch<React.SetStateAction<Questions>>;
+  currentStep: string;
+  options: Questions;
+  currentInput: number;
 };
 
 function Input({
@@ -18,6 +31,11 @@ function Input({
   setValue,
   hasChanged,
   setHasChanged,
+  updateOption,
+  updateOptions,
+  currentStep,
+  options,
+  currentInput,
 }: InputProps) {
   let isPresetOption: boolean = false;
   let isSelected: boolean = false;
@@ -27,6 +45,14 @@ function Input({
   function handleInputClick() {
     setValue(value);
     setHasChanged(true);
+    updateOption(
+      options,
+      updateOptions,
+      currentStep,
+      currentInput,
+      value,
+      presetValue
+    );
   }
   return (
     <div key={keyString} onClick={handleInputClick}>

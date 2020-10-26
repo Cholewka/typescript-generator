@@ -1,18 +1,43 @@
 import React, { useState } from "react";
-import { Question, Preset } from "../typings";
+import { Question, Preset, Questions } from "../typings";
 
 import Input from "./Input";
 
 type OptionProps = {
   item: Question;
   preset: Preset;
+  options: Questions;
+  updateOptions: React.Dispatch<React.SetStateAction<Questions>>;
+  currentStep: string;
+  currentInput: number;
 };
 
 function randomizedValue(value: string): string {
   return `${value}_${Math.random().toString(36).substr(2, 9)}`;
 }
 
-function Option({ item, preset }: OptionProps) {
+function updateOption(
+  options: Questions,
+  updateOptions: React.Dispatch<React.SetStateAction<Questions>>,
+  currentStep: string,
+  currentInput: number,
+  selectedValue: string,
+  presetValue: string
+) {
+  const newArray = options;
+  newArray[currentStep][currentInput].selectedValue =
+    selectedValue || presetValue;
+  updateOptions(newArray);
+}
+
+function Option({
+  item,
+  options,
+  updateOptions,
+  preset,
+  currentStep,
+  currentInput,
+}: OptionProps) {
   const { name, description, values, defaultValue, presets } = item;
   const [selectedValue, setSelectedValue] = useState<string>(presets[preset]);
   const [hasChanged, setHasChanged] = useState<boolean>(false);
@@ -38,7 +63,6 @@ function Option({ item, preset }: OptionProps) {
             .replace("%STOPMONOSPACE%", "</span>"),
         }}
       />
-      <button onClick={() => console.log(selectedValue)}>get value</button>
       <form className="block-form">
         <div className="block-grid">
           {values.map((value) => {
@@ -53,6 +77,11 @@ function Option({ item, preset }: OptionProps) {
                 setValue={setSelectedValue}
                 hasChanged={hasChanged}
                 setHasChanged={setHasChanged}
+                updateOption={updateOption}
+                updateOptions={updateOptions}
+                currentStep={currentStep}
+                options={options}
+                currentInput={currentInput}
               />
             );
           })}

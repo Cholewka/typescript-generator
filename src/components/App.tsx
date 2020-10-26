@@ -1,29 +1,50 @@
 import React, { useState, Suspense } from "react";
-import { Preset } from "../typings";
+import { Preset, Questions, Steps, Question } from "../typings";
 
 import ChoosePreset, { ChoosePresetSettings } from "../steps/ChoosePreset";
 import CompilerOptions, {
   CompilerOptionsSettings,
 } from "../steps/CompilerOptions";
+import Ending, { EndingSettings } from "../steps/Ending";
+
+import questions from "../questions";
 
 function App() {
   const [currentStep, setCurrentStep] = useState<number>(0);
   const [preset, setPreset] = useState<Preset>(Preset.UNDEFINED);
+  const [options, updateOptions] = useState<Questions>(questions);
 
   const nextStep = () => setCurrentStep(currentStep + 1);
   const previousStep = () => {
     if (currentStep === 0) return;
     setCurrentStep(currentStep - 1);
   };
+  const setPresetMethod = (preset: Preset) => {
+    setPreset(preset);
+    let newArray: Questions = questions;
+    const steps = [Steps.COMPILER_OPTIONS];
+    for (let i = 0; i < steps.length; i++) {
+      newArray[steps[i]].forEach((value: Question, index: number) => {
+        newArray[steps[i]][index].selectedValue = value.presets[preset];
+      });
+    }
+    updateOptions(newArray);
+  };
 
   const steps = [
-    <ChoosePreset nextStep={nextStep} setPreset={setPreset} />,
-    <CompilerOptions preset={preset} />,
+    <ChoosePreset nextStep={nextStep} setPreset={setPresetMethod} />,
+    <CompilerOptions
+      preset={preset}
+      options={options}
+      updateOptions={updateOptions}
+    />,
+    <Ending questions={questions} />,
   ];
 
   const descriptions = [
     ChoosePresetSettings.description,
     CompilerOptionsSettings.description,
+    EndingSettings.description,
   ];
 
   return (
@@ -48,7 +69,7 @@ function App() {
               <hr className="section-divider" />
               <div className="section-links">
                 <button onClick={previousStep}>Previous step</button>
-                {currentStep < steps.length ? (
+                {currentStep < steps.length - 1 ? (
                   <button onClick={nextStep} className="primary">
                     Next step
                   </button>

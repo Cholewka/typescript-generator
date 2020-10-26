@@ -8,7 +8,7 @@ export const ChoosePresetSettings: Settings = {
 
 type ChoosePresetProps = {
   nextStep: () => void;
-  setPreset: React.Dispatch<React.SetStateAction<Preset>>;
+  setPreset: (preset: Preset) => void;
 };
 
 function ChoosePreset({ nextStep, setPreset }: ChoosePresetProps) {
