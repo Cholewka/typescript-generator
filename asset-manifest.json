@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/typescript-generator/static/css/main.956133da.chunk.css",
+    "main.js": "/typescript-generator/static/js/main.350adea6.chunk.js",
+    "main.js.map": "/typescript-generator/static/js/main.350adea6.chunk.js.map",
+    "runtime-main.js": "/typescript-generator/static/js/runtime-main.5f26af32.js",
+    "runtime-main.js.map": "/typescript-generator/static/js/runtime-main.5f26af32.js.map",
+    "static/js/2.7270d912.chunk.js": "/typescript-generator/static/js/2.7270d912.chunk.js",
+    "static/js/2.7270d912.chunk.js.map": "/typescript-generator/static/js/2.7270d912.chunk.js.map",
+    "index.html": "/typescript-generator/index.html",
+    "precache-manifest.6f25eb917425601029d9f142063297e0.js": "/typescript-generator/precache-manifest.6f25eb917425601029d9f142063297e0.js",
+    "service-worker.js": "/typescript-generator/service-worker.js",
+    "static/css/main.956133da.chunk.css.map": "/typescript-generator/static/css/main.956133da.chunk.css.map",
+    "static/js/2.7270d912.chunk.js.LICENSE.txt": "/typescript-generator/static/js/2.7270d912.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5f26af32.js",
+    "static/js/2.7270d912.chunk.js",
+    "static/css/main.956133da.chunk.css",
+    "static/js/main.350adea6.chunk.js"
+  ]
+}
