@@ -56,7 +56,7 @@ export default class QuestionDatabase {
     });
   }
 
-  public parseAnswers() {
+  public parseAnswers(): ParsedAnswer {
     const parsedAnswer: ParsedAnswer = {};
     this.categories.forEach((value, key) => {
       parsedAnswer[value] = {};
@@ -64,5 +64,6 @@ export default class QuestionDatabase {
         parsedAnswer[value][answer.name] = answer.value;
       });
     });
+    return parsedAnswer;
   }
 }
