@@ -1,11 +1,25 @@
-import { Question, Questions, Answers, Answer, ParsedAnswer } from "../typings";
+import {
+  Question,
+  Questions,
+  Answers,
+  Answer,
+  ParsedAnswer,
+  Preset,
+  Presets,
+} from "../typings";
+
 import questions from "../data/questions";
+import presets from "../data/presets";
 
 export default class QuestionDatabase {
   private readonly questions: Questions = questions;
+  private readonly presets: Presets = presets;
+
   private categories: string[] = [];
 
   private answers: Answers = [];
+
+  private selectedPreset: Preset | null = null;
 
   constructor() {
     this.questions.forEach(({ key }) => {
@@ -14,11 +28,16 @@ export default class QuestionDatabase {
     });
   }
 
-  private checkIndexLength(index: number, length: number) {
-    if (index! <= length) {
-      return true;
-    }
-    throw new Error("You've set the wrong index.");
+  public getPresets(): Presets {
+    return this.presets;
+  }
+
+  public setPreset(preset: Preset): void {
+    this.selectedPreset = preset;
+  }
+
+  public getSelectedPreset(): Preset | null {
+    return this.selectedPreset;
   }
 
   public getQuestions(): Questions {
@@ -26,9 +45,6 @@ export default class QuestionDatabase {
   }
 
   public getQuestionsFromIndex(index: number): Question[] | boolean {
-    if (!this.checkIndexLength(index, questions.length)) {
-      return false;
-    }
     return this.questions[index].values;
   }
 
@@ -41,9 +57,6 @@ export default class QuestionDatabase {
     fieldName: string,
     answer: string | boolean
   ): void | boolean | string {
-    if (!this.checkIndexLength(questionIndex, questions.length)) {
-      return false;
-    }
     const alreadyAnsweredField = this.answers[questionIndex].find(
       ({ name }) => name === fieldName
     );
