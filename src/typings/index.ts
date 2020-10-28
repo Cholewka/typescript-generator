@@ -20,3 +20,13 @@ export type ParsedAnswer = {
     [key: string]: string | boolean;
   };
 };
+
+export enum Preset {
+  RECOMMENDED = "recommended",
+}
+
+export type Presets = {
+  name: string;
+  description: string;
+  presetEnum: Preset;
+}[];
