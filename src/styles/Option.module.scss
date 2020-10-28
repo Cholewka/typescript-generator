@@ -1,0 +1,36 @@
+.Option_block {
+  background-color: #fff;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+  padding: 18px 24px;
+  width: 100%;
+  margin-bottom: 1rem;
+  opacity: 0.55;
+  transition: opacity 250ms;
+  cursor: pointer;
+  position: relative;
+
+  &:hover,
+  &:active,
+  &:focus {
+    opacity: 1;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.Option_heading {
+  font-size: 26px;
+  font-weight: 600;
+  color: #000;
+  padding: 0;
+  margin: 0;
+}
+
+.Option_paragraph {
+  font-size: 16px;
+  font-weight: 400;
+  padding: 0;
+  margin: 0.5rem 0 0;
+}
