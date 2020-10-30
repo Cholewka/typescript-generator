@@ -23,6 +23,12 @@ export type ParsedAnswer = {
 
 export enum Preset {
   RECOMMENDED = "recommended",
+  NODE10 = "node10",
+  NODE12 = "node12",
+  DENO = "deno",
+  REACT_NATIVE = "reactnative",
+  SVELTE = "svelte",
+  STARTING_FROM_SCRATCH = "scratch",
 }
 
 export type Presets = {
