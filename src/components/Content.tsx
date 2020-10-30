@@ -1,5 +1,7 @@
 import React from "react";
-import { QuestionsContext } from "./App";
+import { Step } from "../typings";
+
+import { QuestionsContext, StepsContext } from "./App";
 
 import Option from "./Option";
 
@@ -7,13 +9,17 @@ import styles from "../styles/App.module.scss";
 
 const Content = () => {
   const QuestionContext = React.useContext(QuestionsContext);
+  const StepContext = React.useContext(StepsContext);
 
-  return (
-    <section className={styles.App_gridItem}>
-      {QuestionContext.getPresets().map(({ name, description }, idx) => (
+  const renderItems = () => {
+    const currentStep = StepContext.getStep();
+    if (currentStep === Step.CHOOSING_PRESET) {
+      return QuestionContext.getPresets().map(({ name, description }, idx) => (
         <Option key={idx} heading={name} paragraph={description} />
-      ))}
-    </section>
-  );
+      ));
+    }
+  };
+
+  return <section className={styles.App_gridItem}>{renderItems()}</section>;
 };
 export default Content;
