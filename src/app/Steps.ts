@@ -4,10 +4,10 @@ import steps from "../data/steps";
 
 export default class StepDatabase {
   private readonly steps: Steps = steps;
-  private currentStep: Step = 0;
+  private currentStep: number = steps[0].step;
 
   public getStep(): Step {
-    return this.currentStep;
+    return this.steps[this.currentStep];
   }
 
   public nextStep(): void {

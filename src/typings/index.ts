@@ -31,8 +31,14 @@ export type Presets = {
   presetEnum: Preset;
 }[];
 
-export enum Step {
+export enum StepEnum {
   CHOOSING_PRESET = 0,
 }
+
+export type Step = {
+  step: StepEnum;
+  stepName: string;
+  stepDescription: string;
+};
 
 export type Steps = Step[];

@@ -1,5 +1,5 @@
 import React from "react";
-import { Step } from "../typings";
+import { StepEnum } from "../typings";
 
 import { QuestionsContext, StepsContext } from "./App";
 
@@ -13,7 +13,7 @@ const Content = () => {
 
   const renderItems = () => {
     const currentStep = StepContext.getStep();
-    if (currentStep === Step.CHOOSING_PRESET) {
+    if (currentStep.step === StepEnum.CHOOSING_PRESET) {
       return QuestionContext.getPresets().map(({ name, description }, idx) => (
         <Option key={idx} heading={name} paragraph={description} />
       ));
