@@ -1,4 +1,5 @@
-import React from "react";
+import React, { createContext } from "react";
+import { Steps } from "../typings";
 
 import Sidebar from "./Sidebar";
 import Content from "./Content";
@@ -7,18 +8,23 @@ import styles from "../styles/App.module.scss";
 
 import QuestionDatabase from "../app/Questions";
 
-const QuestionDatabaseInstance = new QuestionDatabase();
+import steps from "../data/steps";
 
-export const QuestionsContext = React.createContext<QuestionDatabase>(
-  QuestionDatabaseInstance
+const questionsInstance = new QuestionDatabase();
+export const QuestionsContext = createContext<QuestionDatabase>(
+  questionsInstance
 );
 
+export const StepsContext = createContext<Steps>(steps);
+
 const App = () => (
-  <QuestionsContext.Provider value={QuestionDatabaseInstance}>
+  <QuestionsContext.Provider value={questionsInstance}>
     <div className={styles.App_container}>
       <main className={styles.App_grid}>
-        <Sidebar />
-        <Content />
+        <StepsContext.Provider value={steps}>
+          <Sidebar />
+          <Content />
+        </StepsContext.Provider>
       </main>
     </div>
   </QuestionsContext.Provider>
