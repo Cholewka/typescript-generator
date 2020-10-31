@@ -25,6 +25,12 @@ const Content = () => {
             clickEvent={StepContext!.nextStep}
           />
         ));
+    } else if (currentStep.step === StepEnum.COMPILER_OPTIONS) {
+      return QuestionContext!
+        .getQuestionsFromIndex(0)
+        .map(({ name, description }, idx) => (
+          <Option key={idx} heading={name} paragraph={description} />
+        ));
     }
   };
 

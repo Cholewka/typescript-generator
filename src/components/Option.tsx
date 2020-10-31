@@ -8,7 +8,7 @@ import styles from "../styles/Option.module.scss";
 type OptionProps = {
   heading: string;
   paragraph: string;
-  clickEvent: () => void;
+  clickEvent?: () => void;
 };
 
 const Option = ({ heading, paragraph, clickEvent }: OptionProps) => (

@@ -26,7 +26,7 @@ export type QuestionsContextProvidedState = {
   setPreset: (preset: Preset) => void;
   getSelectedPreset: () => Preset | null;
   getQuestions: () => Questions;
-  getQuestionsFromIndex: (index: number) => Question[] | boolean;
+  getQuestionsFromIndex: (index: number) => Question[];
   getAnswers: () => Answers;
   sendNewAnswer: (
     questionIndex: number,
@@ -88,7 +88,7 @@ export default class QuestionsContextProvider extends Component<
     return this.state.questions;
   }
 
-  public getQuestionsFromIndex(index: number): Question[] | boolean {
+  public getQuestionsFromIndex(index: number): Question[] {
     return this.state.questions[index].values;
   }
 
