@@ -23,6 +23,10 @@ export type QuestionsContextProvidedState = {
   answers: Answers;
   selectedPreset: Preset | null;
   getPresets: () => Presets;
+  getPresetForQuestion: (
+    questionCategoryIndex: number,
+    questionIndex: number
+  ) => string;
   setPreset: (preset: Preset) => void;
   getSelectedPreset: () => Preset | null;
   getQuestions: () => Questions;
@@ -47,6 +51,7 @@ export default class QuestionsContextProvider extends Component<
     answers: [],
     selectedPreset: null,
     getPresets: this.getPresets.bind(this),
+    getPresetForQuestion: this.getPresetForQuestion.bind(this),
     setPreset: this.setPreset.bind(this),
     getSelectedPreset: this.getSelectedPreset.bind(this),
     getQuestions: this.getQuestions.bind(this),
@@ -72,6 +77,14 @@ export default class QuestionsContextProvider extends Component<
 
   public getPresets(): Presets {
     return this.state.presets;
+  }
+
+  public getPresetForQuestion(
+    questionCategoryIndex: number,
+    questionIndex: number
+  ): string {
+    return this.state.questions[questionCategoryIndex].values[questionIndex]
+      .presets[this.state.selectedPreset!];
   }
 
   public setPreset(preset: Preset): void {
