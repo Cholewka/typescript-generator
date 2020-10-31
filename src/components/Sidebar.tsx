@@ -1,6 +1,6 @@
 import React from "react";
 
-import { StepsContext } from "./App";
+import StepsContext from "../contexts/StepsContext";
 
 import SidebarHeading from "./SidebarHeading";
 import SidebarParagraph from "./SidebarParagraph";
@@ -9,7 +9,7 @@ import styles from "../styles/App.module.scss";
 
 const Sidebar = () => {
   const StepContext = React.useContext(StepsContext);
-  const currentStep = StepContext.getStep();
+  const currentStep = StepContext!.getStep();
 
   return (
     <section className={`${styles.App_gridItem} ${styles.App_sideItem}`}>

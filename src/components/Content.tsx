@@ -2,6 +2,7 @@ import React from "react";
 import { StepEnum } from "../typings";
 
 import QuestionsContext from "../contexts/QuestionsContext";
+import StepsContext from "../contexts/StepsContext";
 
 import Option from "./Option";
 
@@ -12,12 +13,17 @@ const Content = () => {
   const StepContext = React.useContext(StepsContext);
 
   const renderItems = () => {
-    const currentStep = StepContext.getStep();
+    const currentStep = StepContext!.getStep();
     if (currentStep.step === StepEnum.CHOOSING_PRESET) {
       return QuestionContext!
         .getPresets()
         .map(({ name, description }, idx) => (
-          <Option key={idx} heading={name} paragraph={description} />
+          <Option
+            key={idx}
+            heading={name}
+            paragraph={description}
+            clickEvent={StepContext!.nextStep}
+          />
         ));
     }
   };

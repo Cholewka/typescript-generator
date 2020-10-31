@@ -46,14 +46,14 @@ export default class QuestionsContextProvider extends Component<
     categories: [],
     answers: [],
     selectedPreset: null,
-    getPresets: this.getPresets,
-    setPreset: this.setPreset,
-    getSelectedPreset: this.getSelectedPreset,
-    getQuestions: this.getQuestions,
-    getQuestionsFromIndex: this.getQuestionsFromIndex,
-    getAnswers: this.getAnswers,
-    sendNewAnswer: this.sendNewAnswer,
-    parseAnswers: this.parseAnswers,
+    getPresets: this.getPresets.bind(this),
+    setPreset: this.setPreset.bind(this),
+    getSelectedPreset: this.getSelectedPreset.bind(this),
+    getQuestions: this.getQuestions.bind(this),
+    getQuestionsFromIndex: this.getQuestionsFromIndex.bind(this),
+    getAnswers: this.getAnswers.bind(this),
+    sendNewAnswer: this.sendNewAnswer.bind(this),
+    parseAnswers: this.parseAnswers.bind(this),
   };
 
   constructor(props: any) {
@@ -68,7 +68,6 @@ export default class QuestionsContextProvider extends Component<
       answers: endingAnswersArray,
       categories: endingCatagoriesArray,
     });
-    this.state.getPresets = this.getPresets.bind(this);
   }
 
   public getPresets(): Presets {
@@ -76,7 +75,9 @@ export default class QuestionsContextProvider extends Component<
   }
 
   public setPreset(preset: Preset): void {
-    this.state.selectedPreset = preset;
+    this.setState({
+      selectedPreset: preset,
+    });
   }
 
   public getSelectedPreset(): Preset | null {
