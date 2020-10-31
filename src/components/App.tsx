@@ -5,19 +5,14 @@ import Content from "./Content";
 
 import styles from "../styles/App.module.scss";
 
-import QuestionDatabase from "../app/Questions";
+import QuestionsContextProvider from "../contexts/providers/QuestionsContextProvider";
 import StepsDatabase from "../app/Steps";
-
-const questionsInstance = new QuestionDatabase();
-export const QuestionsContext = createContext<QuestionDatabase>(
-  questionsInstance
-);
 
 const stepsInstance = new StepsDatabase();
 export const StepsContext = createContext<StepsDatabase>(stepsInstance);
 
 const App = () => (
-  <QuestionsContext.Provider value={questionsInstance}>
+  <QuestionsContextProvider>
     <div className={styles.App_container}>
       <main className={styles.App_grid}>
         <StepsContext.Provider value={stepsInstance}>
@@ -26,7 +21,7 @@ const App = () => (
         </StepsContext.Provider>
       </main>
     </div>
-  </QuestionsContext.Provider>
+  </QuestionsContextProvider>
 );
 
 export default App;
