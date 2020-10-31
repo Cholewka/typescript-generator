@@ -10,13 +10,17 @@ export default class StepDatabase {
     return this.steps[this.currentStep];
   }
 
-  public nextStep(): void {
-    if (this.currentStep >= this.steps.length) return;
-    this.currentStep++;
+  public nextStep(): Step {
+    if (this.currentStep < this.steps.length - 1) {
+      this.currentStep++;
+    }
+    return this.getStep();
   }
 
-  public previousStep(): void {
-    if (this.currentStep === 0) return;
-    this.currentStep--;
+  public previousStep(): Step {
+    if (this.currentStep > 0) {
+      this.currentStep--;
+    }
+    return this.getStep();
   }
 }
