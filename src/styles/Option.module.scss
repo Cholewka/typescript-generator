@@ -20,6 +20,11 @@
   }
 }
 
+.Option_inputblock {
+  cursor: unset;
+  opacity: 1;
+}
+
 .Option_heading {
   font-size: 26px;
   font-weight: 600;
@@ -33,4 +38,18 @@
   font-weight: 400;
   padding: 0;
   margin: 0.5rem 0 0;
+}
+
+.Option_label {
+  margin-left: 0.5rem;
+}
+
+.Option_form {
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+.Option_grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }

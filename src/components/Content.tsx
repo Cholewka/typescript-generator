@@ -17,19 +17,29 @@ const Content = () => {
     if (currentStep.step === StepEnum.CHOOSING_PRESET) {
       return QuestionContext!
         .getPresets()
-        .map(({ name, description }, idx) => (
+        .map(({ name, description, presetEnum }, idx) => (
           <Option
             key={idx}
+            idx={idx}
             heading={name}
             paragraph={description}
-            clickEvent={StepContext!.nextStep}
+            clickEvent={() => {
+              StepContext!.nextStep();
+              QuestionContext!.setPreset(presetEnum);
+            }}
           />
         ));
     } else if (currentStep.step === StepEnum.COMPILER_OPTIONS) {
       return QuestionContext!
         .getQuestionsFromIndex(0)
-        .map(({ name, description }, idx) => (
-          <Option key={idx} heading={name} paragraph={description} />
+        .map(({ name, description, ...inputValues }, idx) => (
+          <Option
+            key={idx}
+            idx={idx}
+            heading={name}
+            paragraph={description}
+            {...inputValues}
+          />
         ));
     }
   };
