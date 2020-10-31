@@ -1,6 +1,29 @@
+export enum Preset {
+  RECOMMENDED = "recommended",
+  NODE10 = "node10",
+  NODE12 = "node12",
+  DENO = "deno",
+  REACT_NATIVE = "reactnative",
+  SVELTE = "svelte",
+  STARTING_FROM_SCRATCH = "scratch",
+}
+
+export interface QuestionsPresets {
+  [Preset.RECOMMENDED]: string;
+  [Preset.NODE10]: string;
+  [Preset.NODE12]: string;
+  [Preset.DENO]: string;
+  [Preset.REACT_NATIVE]: string;
+  [Preset.SVELTE]: string;
+  [Preset.STARTING_FROM_SCRATCH]: string;
+}
+
 export interface Question {
   name: string;
   description: string;
+  values: string[];
+  defaultValue: string;
+  presets: QuestionsPresets;
 }
 
 export type Questions = {
@@ -20,16 +43,6 @@ export type ParsedAnswer = {
     [key: string]: string | boolean;
   };
 };
-
-export enum Preset {
-  RECOMMENDED = "recommended",
-  NODE10 = "node10",
-  NODE12 = "node12",
-  DENO = "deno",
-  REACT_NATIVE = "reactnative",
-  SVELTE = "svelte",
-  STARTING_FROM_SCRATCH = "scratch",
-}
 
 export type Presets = {
   name: string;
