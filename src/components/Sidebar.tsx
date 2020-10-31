@@ -5,6 +5,7 @@ import StepsContext from "../contexts/StepsContext";
 import SidebarHeading from "./SidebarHeading";
 import SidebarParagraph from "./SidebarParagraph";
 import SidebarProgressbar from "./SidebarProgressbar";
+import SidebarButtons from "./SidebarButtons";
 
 import styles from "../styles/App.module.scss";
 
@@ -17,6 +18,13 @@ const Sidebar = () => {
       <SidebarHeading>{currentStep.stepName}</SidebarHeading>
       <SidebarParagraph>{currentStep.stepDescription}</SidebarParagraph>
       <SidebarProgressbar />
+      <SidebarButtons
+        showPreviousButton={currentStep.step > 0}
+        showNextButton={
+          currentStep.step !== 0 &&
+          currentStep.step < StepContext!.getStepsCount()
+        }
+      />
     </section>
   );
 };
