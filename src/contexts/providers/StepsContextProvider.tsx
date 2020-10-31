@@ -13,6 +13,7 @@ export type StepsContextProvidedState = {
   getStep: () => Step;
   nextStep: () => Step;
   previousStep: () => Step;
+  getStepsCount: () => number;
 };
 
 export default class StepsContextProvider extends Component<
@@ -25,6 +26,7 @@ export default class StepsContextProvider extends Component<
     getStep: this.getStep.bind(this),
     nextStep: this.nextStep.bind(this),
     previousStep: this.previousStep.bind(this),
+    getStepsCount: this.getStepsCount.bind(this),
   };
 
   public getStep(): Step {
@@ -47,6 +49,10 @@ export default class StepsContextProvider extends Component<
       }));
     }
     return this.getStep();
+  }
+
+  public getStepsCount(): number {
+    return this.state.steps.length - 1;
   }
 
   public render() {
