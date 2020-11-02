@@ -1,8 +1,7 @@
 import React from "react";
-import { QuestionsPresets, InputTypes } from "../typings";
+import { InputTypes } from "../typings";
 
-import OptionHeading from "./OptionHeading";
-import OptionParagraph from "./OptionParagraph";
+import OptionInput from "./OptionInput";
 
 import styles from "../styles/Option.module.scss";
 
@@ -17,18 +16,15 @@ type OptionProps = {
   clickEvent?: () => void;
   values?: string[];
   defaultValue?: string;
-  presets?: QuestionsPresets;
 };
 
 const Option = ({
-  idx,
   heading,
   paragraph,
   inputType,
   clickEvent,
   values,
   defaultValue,
-  presets,
 }: OptionProps) => {
   const StepContext = React.useContext(StepsContext);
   const QuestionContext = React.useContext(QuestionsContext);
@@ -53,31 +49,13 @@ const Option = ({
       }`}
       onClick={clickEvent}
     >
-      {inputType === "singleChoice" ? (
-        <div className={styles.Option_singlechoice}>
-          <div className={styles.Option_checkboxcontainer}>
-            <input type="checkbox" className={styles.Option_checkbox} />
-          </div>
-          <div>
-            <OptionHeading>{heading}</OptionHeading>
-            <OptionParagraph>{paragraph}</OptionParagraph>
-          </div>
-        </div>
-      ) : (
-        <React.Fragment>
-          <OptionHeading>{heading}</OptionHeading>
-          <OptionParagraph>{paragraph}</OptionParagraph>
-          <form className={styles.Option_form}>
-            {values ? (
-              <select defaultValue={getDefaultValue()}>
-                {values.map((value, idx) => (
-                  <option key={idx}>{value}</option>
-                ))}
-              </select>
-            ) : null}
-          </form>
-        </React.Fragment>
-      )}
+      <OptionInput
+        heading={heading}
+        paragraph={paragraph}
+        type={inputType}
+        values={values}
+        defaultValue={currentStep > 0 ? getDefaultValue() : undefined}
+      />
     </div>
   );
 };
