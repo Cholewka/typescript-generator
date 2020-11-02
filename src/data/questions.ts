@@ -6,7 +6,9 @@ const questions: Questions = [
     values: [
       {
         name: "target",
-        description: "Specify ECMAScript target version.",
+        description:
+          "Sets the JavaScript language version for emitted JavaScript and includes compatible library declarations.",
+        inputType: "multipleChoice",
         values: [
           "ES3",
           "ES5",
@@ -31,8 +33,8 @@ const questions: Questions = [
       },
       {
         name: "module",
-        description:
-          "Specify module code generation. Only 'AMD' and 'System' can be used in conjunction with --outFile.",
+        description: "Module code generation.",
+        inputType: "multipleChoice",
         values: [
           "CommonJS",
           "AMD",
@@ -54,10 +56,12 @@ const questions: Questions = [
           scratch: "CommonJS",
         },
       },
+      // @todo: Add strict checks category
       {
         name: "strict",
         description:
           "Enable all strict type checking options. Requires TypeScript version 2.3 or later.",
+        inputType: "singleChoice",
         values: ["true", "false"],
         defaultValue: "false",
         presets: {
@@ -73,7 +77,8 @@ const questions: Questions = [
       {
         name: "esModuleInterop",
         description:
-          "No short description available. Important: if this option is turn on, the `allowSynthethicDefaultImports` option will be turn on, too.",
+          "Emit additional JS to ease support for importing CommonJS modules, and enables `allowSyntheticDefaultImports` for type compatibility.",
+        inputType: "singleChoice",
         values: ["true", "false"],
         defaultValue: "false",
         presets: {
@@ -88,7 +93,8 @@ const questions: Questions = [
       },
       {
         name: "skipLibCheck",
-        description: "Skip type checking of declaration files (d.ts).",
+        description: "Skip type checking all .d.ts files.",
+        inputType: "singleChoice",
         values: ["true", "false"],
         defaultValue: "false",
         presets: {
