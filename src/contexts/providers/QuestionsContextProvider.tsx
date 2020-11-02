@@ -115,7 +115,6 @@ export default class QuestionsContextProvider extends Component<
   public setPresetsInAnswers(preset: Preset): void {
     this.state.categories.forEach((_, key) => {
       this.state.questions.forEach(({ values }, idx) => {
-        console.log(idx);
         values.forEach(({ name }, questionKey) => {
           const selectedPreset = this.getPresetForQuestion(
             idx,
