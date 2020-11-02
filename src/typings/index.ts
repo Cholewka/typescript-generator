@@ -59,6 +59,7 @@ export enum StepEnum {
   STRICT_CHECKS = 2,
   MODULE_RESOLUTIONS = 3,
   ADVANCED = 4,
+  ENDING = 5,
 }
 
 export type Step = {

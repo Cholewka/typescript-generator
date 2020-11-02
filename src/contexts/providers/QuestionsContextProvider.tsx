@@ -37,7 +37,7 @@ export type QuestionsContextProvidedState = {
     fieldName: string,
     answer: string | boolean
   ) => void | boolean | string;
-  parseAnswers: () => ParsedAnswer;
+  parseAnswers: () => string;
 };
 
 export default class QuestionsContextProvider extends Component<
@@ -62,12 +62,16 @@ export default class QuestionsContextProvider extends Component<
   };
 
   constructor(props: any) {
+    // @todo: Add this into componentDidMount to get rid of the React render error
     super(props);
     const endingAnswersArray = this.state.answers;
     const endingCatagoriesArray = this.state.categories;
+    const alreadyUsedKeys: string[] = [];
     this.state.questions.forEach(({ key }) => {
+      if (alreadyUsedKeys.find((value) => value === key)) return;
       endingAnswersArray.push([]);
       endingCatagoriesArray.push(key);
+      alreadyUsedKeys.push(key);
     });
     this.setState({
       answers: endingAnswersArray,
@@ -130,7 +134,7 @@ export default class QuestionsContextProvider extends Component<
     });
   }
 
-  public parseAnswers(): ParsedAnswer {
+  public parseAnswers(): string {
     const parsedAnswer: ParsedAnswer = {};
     this.state.categories.forEach((value, key) => {
       parsedAnswer[value] = {};
@@ -138,7 +142,7 @@ export default class QuestionsContextProvider extends Component<
         parsedAnswer[value][answer.name] = answer.value;
       });
     });
-    return parsedAnswer;
+    return JSON.stringify(parsedAnswer, null, 2);
   }
 
   public render() {

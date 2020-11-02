@@ -7,6 +7,7 @@ import StepsContext from "../contexts/StepsContext";
 import Option from "./Option";
 
 import styles from "../styles/App.module.scss";
+import steps from "../data/steps";
 
 const Content = () => {
   const QuestionContext = React.useContext(QuestionsContext);
@@ -29,6 +30,8 @@ const Content = () => {
             }}
           />
         ));
+    } else if (currentStep.step === steps.length - 1) {
+      return <pre>{QuestionContext!.parseAnswers()}</pre>;
     } else if (currentStep.step > 0) {
       return QuestionContext!
         .getQuestionsFromIndex(currentStep.step - 1)

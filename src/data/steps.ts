@@ -27,6 +27,12 @@ const steps: Steps = [
     stepName: "Advanced options",
     stepDescription: "Let's dive in into the advances.",
   },
+  {
+    step: StepEnum.ENDING,
+    stepName: "Ending",
+    stepDescription:
+      "Your journey ends here. You can now get your generated code!",
+  },
 ];
 
 export default steps;
