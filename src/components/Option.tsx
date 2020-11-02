@@ -42,6 +42,10 @@ const Option = ({
     );
   }
 
+  const [selectedValue, setSelectedValue] = React.useState<
+    string | boolean | null
+  >(null);
+
   return (
     <div
       className={`${styles.Option_block} ${
@@ -55,6 +59,8 @@ const Option = ({
         type={inputType}
         values={values}
         defaultValue={currentStep > 0 ? getDefaultValue() : undefined}
+        selectedValue={selectedValue}
+        setSelectedValue={setSelectedValue}
       />
     </div>
   );

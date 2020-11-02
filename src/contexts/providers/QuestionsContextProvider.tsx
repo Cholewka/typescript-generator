@@ -30,6 +30,8 @@ export type QuestionsContextProvidedState = {
   setPreset: (preset: Preset) => void;
   getSelectedPreset: () => Preset | null;
   getQuestions: () => Questions;
+  getFieldNameCategory: (fieldName: string) => string;
+  getQuestionIndex: (fieldName: string) => number;
   getQuestionsFromIndex: (index: number) => Question[];
   getAnswers: () => Answers;
   sendNewAnswer: (
@@ -55,6 +57,8 @@ export default class QuestionsContextProvider extends Component<
     setPreset: this.setPreset.bind(this),
     getSelectedPreset: this.getSelectedPreset.bind(this),
     getQuestions: this.getQuestions.bind(this),
+    getFieldNameCategory: this.getFieldNameCategory.bind(this),
+    getQuestionIndex: this.getQuestionIndex.bind(this),
     getQuestionsFromIndex: this.getQuestionsFromIndex.bind(this),
     getAnswers: this.getAnswers.bind(this),
     sendNewAnswer: this.sendNewAnswer.bind(this),
@@ -103,6 +107,18 @@ export default class QuestionsContextProvider extends Component<
 
   public getQuestions(): Questions {
     return this.state.questions;
+  }
+
+  public getFieldNameCategory(fieldName: string): string {
+    return this.state.questions.find(({ values }) =>
+      values.find(({ name }) => name === fieldName)
+    )!.key;
+  }
+
+  public getQuestionIndex(fieldName: string): number {
+    return this.state.categories.findIndex(
+      (value) => value === this.getFieldNameCategory(fieldName)
+    );
   }
 
   public getQuestionsFromIndex(index: number): Question[] {
