@@ -5,6 +5,7 @@ import QuestionsContext from "../contexts/QuestionsContext";
 import StepsContext from "../contexts/StepsContext";
 
 import Option from "./Option";
+import Ending from "./Ending";
 
 import styles from "../styles/App.module.scss";
 import steps from "../data/steps";
@@ -32,7 +33,7 @@ const Content = () => {
           />
         ));
     } else if (currentStep.step === steps.length - 1) {
-      return <pre>{QuestionContext!.parseAnswers()}</pre>;
+      return <Ending>{QuestionContext!.parseAnswers()}</Ending>;
     } else if (currentStep.step > 0) {
       return QuestionContext!
         .getQuestionsFromIndex(currentStep.step - 1)
