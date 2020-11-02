@@ -1,9 +1,8 @@
 import React from "react";
-import { QuestionsPresets } from "../typings";
+import { QuestionsPresets, InputTypes } from "../typings";
 
 import OptionHeading from "./OptionHeading";
 import OptionParagraph from "./OptionParagraph";
-import OptionInput from "./OptionInput";
 
 import styles from "../styles/Option.module.scss";
 
@@ -14,6 +13,7 @@ type OptionProps = {
   idx: number;
   heading: string;
   paragraph: string;
+  inputType?: InputTypes;
   clickEvent?: () => void;
   values?: string[];
   defaultValue?: string;
@@ -24,6 +24,7 @@ const Option = ({
   idx,
   heading,
   paragraph,
+  inputType,
   clickEvent,
   values,
   defaultValue,
@@ -35,10 +36,13 @@ const Option = ({
   const currentStep = StepContext!.currentStep;
   const isInputStep = currentStep > 0;
 
-  function checkIsSelected(value: string): boolean {
-    if (!isInputStep) return false;
-    return (
-      QuestionContext!.getPresetForQuestion(currentStep - 1, idx) === value
+  function getDefaultValue(): string {
+    const questionIndex = QuestionContext!
+      .getQuestions()
+      [currentStep - 1].values.findIndex(({ name }) => name === heading);
+    return QuestionContext!.getPresetForQuestion(
+      currentStep - 1,
+      questionIndex
     );
   }
 
@@ -49,20 +53,31 @@ const Option = ({
       }`}
       onClick={clickEvent}
     >
-      <OptionHeading>{heading}</OptionHeading>
-      <OptionParagraph>{paragraph}</OptionParagraph>
-      <form className={styles.Option_form}>
-        <div className={styles.Option_grid}>
-          {values?.map((value, idx) => (
-            <OptionInput
-              key={idx}
-              idx={idx}
-              value={value}
-              isDefault={checkIsSelected(value)}
-            />
-          ))}
+      {inputType === "singleChoice" ? (
+        <div className={styles.Option_singlechoice}>
+          <div className={styles.Option_checkboxcontainer}>
+            <input type="checkbox" className={styles.Option_checkbox} />
+          </div>
+          <div>
+            <OptionHeading>{heading}</OptionHeading>
+            <OptionParagraph>{paragraph}</OptionParagraph>
+          </div>
         </div>
-      </form>
+      ) : (
+        <React.Fragment>
+          <OptionHeading>{heading}</OptionHeading>
+          <OptionParagraph>{paragraph}</OptionParagraph>
+          <form className={styles.Option_form}>
+            {values ? (
+              <select defaultValue={getDefaultValue()}>
+                {values.map((value, idx) => (
+                  <option key={idx}>{value}</option>
+                ))}
+              </select>
+            ) : null}
+          </form>
+        </React.Fragment>
+      )}
     </div>
   );
 };

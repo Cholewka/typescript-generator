@@ -18,9 +18,12 @@ export interface QuestionsPresets {
   [Preset.STARTING_FROM_SCRATCH]: string;
 }
 
+export type InputTypes = "multipleChoice" | "singleChoice";
+
 export interface Question {
   name: string;
   description: string;
+  inputType: InputTypes;
   values: string[];
   defaultValue: string;
   presets: QuestionsPresets;

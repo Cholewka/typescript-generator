@@ -53,3 +53,18 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
+
+.Option_singlechoice {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  grid-gap: 10px;
+}
+
+.Option_checkboxcontainer {
+  display: flex;
+  justify-content: center;
+}
+
+.Option_checkbox {
+  width: 40px;
+}
