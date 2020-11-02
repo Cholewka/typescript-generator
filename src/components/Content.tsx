@@ -29,9 +29,9 @@ const Content = () => {
             }}
           />
         ));
-    } else if (currentStep.step === StepEnum.COMPILER_OPTIONS) {
+    } else if (currentStep.step > 0) {
       return QuestionContext!
-        .getQuestionsFromIndex(0)
+        .getQuestionsFromIndex(currentStep.step - 1)
         .map(({ name, description, ...inputValues }, idx) => (
           <Option
             key={idx}
