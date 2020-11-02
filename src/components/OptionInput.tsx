@@ -38,7 +38,7 @@ const OptionInput = ({
     <div>
       {renderText()}
       {values ? (
-        <select defaultValue={defaultValue!}>
+        <select defaultValue={defaultValue!} className={styles.Option_select}>
           {values.map((value, idx) => (
             <option key={idx}>{value}</option>
           ))}
