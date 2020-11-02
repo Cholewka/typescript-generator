@@ -27,6 +27,7 @@ const Content = () => {
             clickEvent={() => {
               StepContext!.nextStep();
               QuestionContext!.setPreset(presetEnum);
+              QuestionContext!.setPresetsInAnswers(presetEnum);
             }}
           />
         ));

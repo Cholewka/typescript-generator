@@ -28,6 +28,7 @@ export type QuestionsContextProvidedState = {
     questionIndex: number
   ) => string;
   setPreset: (preset: Preset) => void;
+  setPresetsInAnswers: (preset: Preset) => void;
   getSelectedPreset: () => Preset | null;
   getQuestions: () => Questions;
   getFieldNameCategory: (fieldName: string) => string;
@@ -55,6 +56,7 @@ export default class QuestionsContextProvider extends Component<
     getPresets: this.getPresets.bind(this),
     getPresetForQuestion: this.getPresetForQuestion.bind(this),
     setPreset: this.setPreset.bind(this),
+    setPresetsInAnswers: this.setPresetsInAnswers.bind(this),
     getSelectedPreset: this.getSelectedPreset.bind(this),
     getQuestions: this.getQuestions.bind(this),
     getFieldNameCategory: this.getFieldNameCategory.bind(this),
@@ -89,15 +91,47 @@ export default class QuestionsContextProvider extends Component<
 
   public getPresetForQuestion(
     questionCategoryIndex: number,
-    questionIndex: number
+    questionIndex: number,
+    preset?: Preset
   ): string {
     return this.state.questions[questionCategoryIndex].values[questionIndex]
-      .presets[this.state.selectedPreset!];
+      .presets[preset || this.state.selectedPreset!];
   }
 
   public setPreset(preset: Preset): void {
     this.setState({
       selectedPreset: preset,
+    });
+  }
+
+  private getDefaultValueForQuestion(
+    questionCategoryIndex: number,
+    questionIndex: number
+  ): string {
+    return this.state.questions[questionCategoryIndex].values[questionIndex]
+      .defaultValue;
+  }
+
+  public setPresetsInAnswers(preset: Preset): void {
+    this.state.categories.forEach((_, key) => {
+      this.state.questions.forEach(({ values }, idx) => {
+        console.log(idx);
+        values.forEach(({ name }, questionKey) => {
+          const selectedPreset = this.getPresetForQuestion(
+            idx,
+            questionKey,
+            preset
+          );
+          let newPreset: string | boolean = selectedPreset;
+          if (selectedPreset === "true") newPreset = true;
+          if (selectedPreset === "false") newPreset = false;
+          if (
+            selectedPreset === this.getDefaultValueForQuestion(idx, questionKey)
+          )
+            return;
+          this.sendNewAnswer(key, name, newPreset);
+        });
+      });
     });
   }
 
