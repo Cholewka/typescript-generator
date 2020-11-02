@@ -13,10 +13,6 @@ type OptionInputTypes = {
   paragraph: string;
   values?: string[];
   defaultValue?: string;
-  selectedValue: string | boolean | null;
-  setSelectedValue: React.Dispatch<
-    React.SetStateAction<string | boolean | null>
-  >;
 };
 
 const OptionInput = ({
@@ -25,9 +21,9 @@ const OptionInput = ({
   paragraph,
   values,
   defaultValue,
-  selectedValue,
-  setSelectedValue,
 }: OptionInputTypes) => {
+  const [selectedAnswer, setSelectedAnswer] = React.useState<boolean>(false);
+
   const QuestionContext = React.useContext(QuestionsContext);
 
   const renderText = () => (
@@ -40,12 +36,22 @@ const OptionInput = ({
   function isSelectedAnswer(): boolean {
     return QuestionContext!
       .getAnswers()
-      [QuestionContext!.getQuestionIndex(heading)].find(({ name, value }) => {
-        console.log(name);
-        return name === heading && value === true;
-      })
+      [QuestionContext!.getQuestionIndex(heading)].find(
+        ({ name, value }) => name === heading && value === true
+      )
       ? true
       : false;
+  }
+
+  function getSelectedAnswer(): string {
+    return (
+      QuestionContext!
+        .getAnswers()
+        [QuestionContext!.getQuestionIndex(heading)].find(
+          ({ name }) => name === heading
+        )
+        ?.value.toString() || defaultValue!
+    );
   }
 
   return type === "singleChoice" ? (
@@ -59,9 +65,9 @@ const OptionInput = ({
             QuestionContext!.sendNewAnswer(
               QuestionContext!.getQuestionIndex(heading),
               heading,
-              selectedValue === null ? true : !selectedValue
+              !selectedAnswer
             );
-            setSelectedValue(selectedValue === null ? true : !selectedValue);
+            setSelectedAnswer(!selectedAnswer);
           }}
         />
       </div>
@@ -71,9 +77,23 @@ const OptionInput = ({
     <div>
       {renderText()}
       {values ? (
-        <select defaultValue={defaultValue!} className={styles.Option_select}>
+        <select
+          defaultValue={getSelectedAnswer()!}
+          className={styles.Option_select}
+        >
           {values.map((value, idx) => (
-            <option key={idx}>{value}</option>
+            <option
+              key={idx}
+              onClick={() => {
+                QuestionContext!.sendNewAnswer(
+                  QuestionContext!.getQuestionIndex(heading),
+                  heading,
+                  value
+                );
+              }}
+            >
+              {value}
+            </option>
           ))}
         </select>
       ) : null}
