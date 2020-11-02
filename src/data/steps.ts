@@ -8,10 +8,24 @@ const steps: Steps = [
       "Do you want to start creating a configuration file from a preset?",
   },
   {
-    step: StepEnum.COMPILER_OPTIONS,
-    stepName: "Compiler options",
-    stepDescription:
-      'Let\'s set the "compilerOptions" values. Hover over the options to get more informations about them.',
+    step: StepEnum.SELECTIONS,
+    stepName: "Selections",
+    stepDescription: "Let's set the target and module options.",
+  },
+  {
+    step: StepEnum.STRICT_CHECKS,
+    stepName: "Strict checks",
+    stepDescription: "Let's see what parts of code will be strict-checked.",
+  },
+  {
+    step: StepEnum.MODULE_RESOLUTIONS,
+    stepName: "Module resolutions",
+    stepDescription: "Let's set the module resolutions.",
+  },
+  {
+    step: StepEnum.ADVANCED,
+    stepName: "Advanced options",
+    stepDescription: "Let's dive in into the advances.",
   },
 ];
 

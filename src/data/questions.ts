@@ -2,6 +2,7 @@ import { Questions } from "../typings";
 
 const questions: Questions = [
   {
+    // Selections
     key: "compilerOptions",
     values: [
       {
@@ -56,7 +57,12 @@ const questions: Questions = [
           scratch: "CommonJS",
         },
       },
-      // @todo: Add strict checks category
+    ],
+  },
+  {
+    // Strict Checks
+    key: "compilerOptions",
+    values: [
       {
         name: "strict",
         description:
@@ -74,6 +80,12 @@ const questions: Questions = [
           scratch: "false",
         },
       },
+    ],
+  },
+  {
+    // Module Resolutions
+    key: "compilerOptions",
+    values: [
       {
         name: "esModuleInterop",
         description:
@@ -91,6 +103,12 @@ const questions: Questions = [
           scratch: "false",
         },
       },
+    ],
+  },
+  {
+    // Advanced
+    key: "compilerOptions",
+    values: [
       {
         name: "skipLibCheck",
         description: "Skip type checking all .d.ts files.",

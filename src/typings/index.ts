@@ -55,7 +55,10 @@ export type Presets = {
 
 export enum StepEnum {
   CHOOSING_PRESET = 0,
-  COMPILER_OPTIONS = 1,
+  SELECTIONS = 1,
+  STRICT_CHECKS = 2,
+  MODULE_RESOLUTIONS = 3,
+  ADVANCED = 4,
 }
 
 export type Step = {
