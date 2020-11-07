@@ -29,7 +29,7 @@ const SidebarButtons = ({
         className={styles.SidebarButtons_button}
         onClick={() => handleClick("previous")}
       >
-        Previous step
+        &laquo; Previous step
       </button>
     ) : null;
   const renderNextButton = () =>
@@ -38,14 +38,16 @@ const SidebarButtons = ({
         className={styles.SidebarButtons_button}
         onClick={() => handleClick("next")}
       >
-        Next step
+        Next step &raquo;
       </button>
     ) : null;
   return (
     <React.Fragment>
       {renderDivider()}
-      {renderPreviousButton()}
-      {renderNextButton()}
+      <div className={styles.SidebarButtons_buttonlist}>
+        {renderPreviousButton()}
+        {renderNextButton()}
+      </div>
     </React.Fragment>
   );
 };
