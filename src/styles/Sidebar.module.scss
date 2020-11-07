@@ -66,10 +66,6 @@
     &:last-child {
       margin-bottom: 0;
     }
-
-    &:before {
-      content: "  ";
-    }
   }
 }
 
@@ -77,6 +73,6 @@
   opacity: 1 !important;
 
   &:before {
-    content: "\2713\0020" !important;
+    content: "\2713\0020";
   }
 }
