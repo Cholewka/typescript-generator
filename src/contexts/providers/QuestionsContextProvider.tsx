@@ -68,7 +68,6 @@ export default class QuestionsContextProvider extends Component<
   };
 
   constructor(props: any) {
-    // @todo: Add this into componentDidMount to get rid of the React render error
     super(props);
     const endingAnswersArray = this.state.answers;
     const endingCatagoriesArray = this.state.categories;
@@ -79,10 +78,8 @@ export default class QuestionsContextProvider extends Component<
       endingCatagoriesArray.push(key);
       alreadyUsedKeys.push(key);
     });
-    this.setState({
-      answers: endingAnswersArray,
-      categories: endingCatagoriesArray,
-    });
+    this.state.answers = endingAnswersArray;
+    this.state.categories = endingCatagoriesArray;
   }
 
   public getPresets(): Presets {
