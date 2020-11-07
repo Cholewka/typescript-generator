@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Profiler } from "react";
 import { InputTypes } from "../typings";
 
 import styles from "../styles/Option.module.scss";
@@ -57,19 +57,24 @@ const OptionInput = ({
   return type === "singleChoice" ? (
     <div className={styles.Option_singlechoice}>
       <div className={styles.Option_checkboxcontainer}>
-        <input
-          type="checkbox"
-          className={styles.Option_checkbox}
-          checked={isSelectedAnswer()}
-          onChange={() => {
-            QuestionContext!.sendNewAnswer(
-              QuestionContext!.getQuestionIndex(heading),
-              heading,
-              !selectedAnswer
-            );
-            setSelectedAnswer(!selectedAnswer);
-          }}
-        />
+        <Profiler
+          id="CurrentAnswer"
+          onRender={() => setSelectedAnswer(isSelectedAnswer())}
+        >
+          <input
+            type="checkbox"
+            className={styles.Option_checkbox}
+            checked={isSelectedAnswer()}
+            onChange={() => {
+              QuestionContext!.sendNewAnswer(
+                QuestionContext!.getQuestionIndex(heading),
+                heading,
+                !selectedAnswer
+              );
+              setSelectedAnswer(!selectedAnswer);
+            }}
+          />
+        </Profiler>
       </div>
       {renderText()}
     </div>

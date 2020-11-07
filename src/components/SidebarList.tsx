@@ -10,7 +10,6 @@ const SidebarList = () => {
   const currentStep = StepContext!.currentStep;
 
   function isAlreadyDone(value: number) {
-    console.log(value);
     if (value <= currentStep) {
       return true;
     }
