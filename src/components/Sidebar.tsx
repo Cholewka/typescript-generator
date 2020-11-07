@@ -6,6 +6,7 @@ import SidebarHeading from "./SidebarHeading";
 import SidebarParagraph from "./SidebarParagraph";
 import SidebarProgressbar from "./SidebarProgressbar";
 import SidebarButtons from "./SidebarButtons";
+import SidebarList from "./SidebarList";
 
 import styles from "../styles/App.module.scss";
 
@@ -18,6 +19,7 @@ const Sidebar = () => {
       <SidebarHeading>{currentStep.stepName}</SidebarHeading>
       <SidebarParagraph>{currentStep.stepDescription}</SidebarParagraph>
       <SidebarProgressbar />
+      <SidebarList />
       <SidebarButtons
         showPreviousButton={currentStep.step > 0}
         showNextButton={
