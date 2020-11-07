@@ -1,0 +1,28 @@
+.App_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  height: 100vh;
+  max-width: 900px;
+}
+
+.App_grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.25fr;
+  grid-gap: 20px;
+  width: 100%;
+  max-height: 80vh;
+}
+
+.App_gridItem {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  max-height: 80vh;
+  padding: 6px;
+}
+
+.App_sideItem {
+  justify-content: center;
+}

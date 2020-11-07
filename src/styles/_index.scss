@@ -1,0 +1,14 @@
+$font-family: "Open Sans", sans-serif;
+$site-color: #ebedee;
+$font-color: #333;
+
+body {
+  margin: 0 auto;
+  font-family: $font-family;
+  background-color: $site-color;
+  color: $font-color;
+}
+
+* {
+  box-sizing: border-box;
+}
