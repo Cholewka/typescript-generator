@@ -22,8 +22,6 @@ const OptionInput = ({
   values,
   defaultValue,
 }: OptionInputTypes) => {
-  const [selectedAnswer, setSelectedAnswer] = React.useState<boolean>(false);
-
   const QuestionContext = React.useContext(QuestionsContext);
 
   const renderText = () => (
@@ -53,6 +51,10 @@ const OptionInput = ({
         ?.value.toString() || defaultValue!
     );
   }
+
+  const [selectedAnswer, setSelectedAnswer] = React.useState<boolean>(
+    isSelectedAnswer()
+  );
 
   return type === "singleChoice" ? (
     <div className={styles.Option_singlechoice}>

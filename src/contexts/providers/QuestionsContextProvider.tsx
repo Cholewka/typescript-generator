@@ -140,9 +140,11 @@ export default class QuestionsContextProvider extends Component<
   }
 
   public getFieldNameCategory(fieldName: string): string {
-    return this.state.questions.find(({ values }) =>
+    const question = this.state.questions.find(({ values }) =>
       values.find(({ name }) => name === fieldName)
-    )!.key;
+    );
+    if (question) return question.key;
+    return "compilerOptions";
   }
 
   public getQuestionIndex(fieldName: string): number {
